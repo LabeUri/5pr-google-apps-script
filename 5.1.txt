@@ -1,0 +1,19 @@
+function listAttachmentsFromAuthor(authorEmail) {
+  var threads = GmailApp.search("from:" + authorEmail);
+
+  for (var i = 0; i < threads.length; i++) {
+    var messages = threads[i].getMessages();
+
+    for (var j = 0; j < messages.length; j++) {
+      var attachments = messages[j].getAttachments();
+
+      if (attachments.length > 0) {
+        Logger.log("Message from " + authorEmail + " (Theame: " + messages[j].getSubject() + ")");
+        for (var k = 0; k < attachments.length; k++) {
+          Logger.log("Attachments: " + attachments[k].getName());
+        }
+      }
+    }
+  }                                                                                                                                                                                                   
+}
+listAttachmentsFromAuthor("l.v.shostak@rcit.ukr.education");

@@ -1,0 +1,24 @@
+function sendEmailWithTemplate(recipientEmail, recipientName) {
+  // Перевірка, чи вказана адреса одержувача
+  if (!recipientEmail) {
+    console.error('Помилка: Не вказана адреса одержувача.');
+    return;
+  }
+
+  // Створюємо HTML-шаблон листа
+  var emailTemplate = '<html><body>';
+  emailTemplate += '<p>Вітаю, ' + recipientName + '!</p>';
+  emailTemplate += '<p>Це приклад листа, створеного із HTML-шаблону.</p>';
+  emailTemplate += '</body></html>';
+
+  // Відправляємо лист
+  GmailApp.sendEmail(recipientEmail, 'Спеціальне привітання', 'Пусте повідомлення', { htmlBody: emailTemplate });
+}
+
+// Викликаємо функцію для відправки листа з іменем одержувача та адресою
+sendEmailWithTemplate("dsehen@rcit.ukr.education", "Сеген Дима");
+
+var recipientEmail = "dsehen@rcit.ukr.education";
+var recipientName = "Сеген Дима";
+
+sendEmailWithTemplate(recipientEmail, recipientName);

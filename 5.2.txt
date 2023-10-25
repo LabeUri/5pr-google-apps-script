@@ -1,0 +1,26 @@
+function checkAndReplyToEmails() {
+  var threads = GmailApp.search('is:unread');
+  
+  for (var i = 0; i < threads.length; i++) {
+    var messages = threads[i].getMessages();
+    
+    for (var j = 0; j < messages.length; j++) {
+      var message = messages[j];
+      
+      // Відправляємо відповідь на непрочитане повідомлення
+      var replyMessage = "Дуже дякую! Повідомлення отримав!";
+      message.reply(replyMessage);
+      
+      // Позначаємо повідомлення як прочитані
+      message.markRead();
+    }
+  }
+}
+
+// Встановлюємо тригер для виконання кожні 5 хвилин
+function setTrigger() {
+  ScriptApp.newTrigger('checkAndReplyToEmails')
+    .timeBased()
+    .everyMinutes(5)
+    .create();
+}
